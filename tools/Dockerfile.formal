@@ -1,0 +1,11 @@
+# Formal image: OSS CAD Suite (yosys + SymbiYosys + solvers), pinned to the same
+# release the CI job uses (see .github/workflows/formal.yaml).
+FROM ubuntu:24.04
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update && apt-get install -y --no-install-recommends curl ca-certificates make \
+    && rm -rf /var/lib/apt/lists/*
+RUN curl -fsSL -o /tmp/oss.tgz \
+      https://github.com/YosysHQ/oss-cad-suite-build/releases/download/2026-11-15/oss-cad-suite-linux-x64-20261115.tgz \
+    && tar -xzf /tmp/oss.tgz -C /opt && rm /tmp/oss.tgz
+ENV PATH="/opt/oss-cad-suite/bin:$PATH"
+WORKDIR /work

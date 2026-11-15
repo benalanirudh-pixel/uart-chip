@@ -13,3 +13,6 @@ test/results.xml
 test/gate_level_netlist.v
 test/results.xml
 test/__pycache__
+formal/sync_fifo_bmc
+formal/sync_fifo_cover
+formal/sync_fifo

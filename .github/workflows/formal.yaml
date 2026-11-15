@@ -1,0 +1,23 @@
+name: formal
+on: [push, workflow_dispatch]
+jobs:
+  formal:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v6
+
+      # Same pinned OSS CAD Suite release as tools/Dockerfile.formal
+      - name: Setup OSS CAD Suite (yosys, sby, solvers)
+        uses: YosysHQ/setup-oss-cad-suite@v4
+        with:
+          version: '2026-11-15'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Prove sync_fifo (bounded model check, depth 24)
+        working-directory: formal
+        run: sby -f sync_fifo.sby bmc
+
+      - name: Cover sync_fifo (interesting states are reachable)
+        working-directory: formal
+        run: sby -f sync_fifo.sby cover

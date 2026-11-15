@@ -1,0 +1,26 @@
+# Run:  sby -f sync_fifo.sby bmc     (prove, depth 24)
+#       sby -f sync_fifo.sby cover   (show interesting states are reachable)
+[tasks]
+bmc
+cover
+
+[options]
+bmc: mode bmc
+bmc: depth 24
+cover: mode cover
+cover: depth 24
+multiclock off
+
+[engines]
+bmc: abc bmc3
+cover: smtbmc boolector
+
+[script]
+read -formal sync_fifo.v
+read -formal fifo_props.v
+prep -top fifo_props
+memory_map
+
+[files]
+../src/sync_fifo.v
+fifo_props.v

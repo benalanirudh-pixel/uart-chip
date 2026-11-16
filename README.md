@@ -99,7 +99,7 @@ All numbers come from the CI runs (GDS run 43791737435) or from local runs I saw
 | Tests (gate level, CI) | 10 cases, 0 failures |
 | Test strength | 3 deliberately broken RTL copies were each caught |
 | Code coverage | not measured |
-| Formal (FIFO, bounded model check) | PASS at depth 24; 4 / 4 cover goals reached; 3 broken FIFOs each fail the proof. The proof model uses 4-bit data (the chip uses 8) |
+| Formal (FIFO, bounded model check) | PASS at depth 24; 4 / 4 cover goals reached; 3 broken FIFOs each fail the proof. Proof uses the chip's real 8-bit data width |
 | Tile / die | 1x2, 202 x 314 um (1x1 did not fit: 94.9 % utilisation, placement failed) |
 | Cells | 1 922 standard cells, 275 flip-flops, 33 552 um2 of logic, 55.8 % utilisation |
 | Hold buffers | 397 inserted by the timing repair |

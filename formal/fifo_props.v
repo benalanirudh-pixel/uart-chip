@@ -12,10 +12,10 @@ module fifo_props (
     input wire       clk,
     input wire       rst_n,
     input wire       wr_en,
-    input wire [3:0] wr_data,
+    input wire [7:0] wr_data,
     input wire       rd_en
 );
-  localparam WIDTH = 4, AW = 3, DEPTH = 1 << AW;
+  localparam WIDTH = 8, AW = 3, DEPTH = 1 << AW;
 
   wire [WIDTH-1:0] rd_data;
   wire             full, empty;
